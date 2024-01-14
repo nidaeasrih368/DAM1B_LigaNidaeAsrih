@@ -10,9 +10,13 @@ public class Liga {
     }
 
     public void mostrarListadoEquipos() {
-        StringBuilder sb = new StringBuilder("Listado de Equipos:\n");
+        String encabezado = String.format("%-15s%-15s%-16s", "EQUIPO", "CIUDAD", "NUMERO JUGADORES");
+        System.out.println(encabezado);
         for (int i = 0; i < ListadoEquipos.length; i++) {
-            sb.append(ListadoEquipos[i].getNombre()).append("\n");
+            if (ListadoEquipos[i] != null) {
+                String equipoInfo = String.format("%-15s%-15s%8s", ListadoEquipos[i].getNombre(), ListadoEquipos[i].getCiudad(), ListadoEquipos[i].getNumJugadores());
+                System.out.println(equipoInfo);
+            }
         }
     }
 
@@ -28,7 +32,7 @@ public class Liga {
 
     public Equipo getEquipo(String nombreEquipo) {
         for (int i = 0; i < ListadoEquipos.length; i++) {
-            if (ListadoEquipos[i].getNombre().equals(nombreEquipo)) {
+            if (ListadoEquipos[i] != null && ListadoEquipos[i].getNombre().equals(nombreEquipo)) {
                 return ListadoEquipos[i];
             }
         }

@@ -29,9 +29,13 @@ public class Equipo {
     }
 
     public void mostrarListaJugadores() {
-        StringBuilder sb = new StringBuilder("Listado de Jugadores:\n");
+        String encabezado = String.format("%-15s%-15s%-15s%-15s%-15s", "NOMBRE", "POSICIÓN", "EDAD", "NAC", "LESIONADO");
+        System.out.println(encabezado);
         for (int i = 0; i < ListaJugadores.length; i++) {
-            sb.append(ListaJugadores[i].getNombre() + "\n");
+            if (ListaJugadores[i] != null) {
+                String equipoInfo = String.format("%-15s%-15s%-15d%-15s%-15s", ListaJugadores[i].getNombre(), ListaJugadores[i].getPosicion(), ListaJugadores[i].getEdad(), ListaJugadores[i].getNacionalidad(), ListaJugadores[i].getLesionado());
+                System.out.println(equipoInfo);
+            }
         }
     }
 
@@ -44,15 +48,13 @@ public class Equipo {
                     break;
                 }
             }
-        } else {
-            System.out.println("El equipo está lleno.");
         }
     }
 
     public void venderJugador(String nombreJugador) {
         if (hayJugadores()) {
             for (int i = 0; i < ListaJugadores.length; i++) {
-                if (ListaJugadores[i].getNombre().equals(nombreJugador)) {
+                if (ListaJugadores[i] != null && ListaJugadores[i].getNombre().equals(nombreJugador)) {
                     ListaJugadores[i] = null;
                     System.out.println("Se ha vendido al jugador.");
                     break;
